@@ -373,11 +373,17 @@ def _wrap_generate_ip(cls, f):
 
                     if cls._check_unique_ip(context, network_id, subnet_id,
                                             candidate):
-                        cls._allocate_specific_ip(
-                            context,
-                            subnet_id,
-                            candidate
-                        )
+                        # Note (ryan):
+                        # Normally, we would call `cls._allocate_specific_ip`
+                        # here to manage the `IPAvailabilityRange`s for this
+                        # subnet.  Because we're using v6 SLAAC addresses,
+                        # though, we run into an upstream bug,
+                        # https://bugs.launchpad.net/neutron/+bug/1321044,
+                        # that results in needless availability range
+                        # management (and DB table growth).  In addition,
+                        # for SLAAC addresses, we don't really *need* to care
+                        # about availability ranges, only the uniqueness of the
+                        # v6 address.
                         return {
                             'ip_address': candidate,
                             'subnet_id': subnet_id
