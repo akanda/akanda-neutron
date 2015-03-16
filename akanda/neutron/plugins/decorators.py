@@ -110,18 +110,6 @@ def sync_subnet_gateway_port(f):
     return wrapper
 
 
-def auto_add_other_resources(f):
-    @functools.wraps(f)
-    def wrapper(self, context, *args, **kwargs):
-        LOG.debug('auto_add_other_resources')
-        retval = f(self, context, *args, **kwargs)
-        if not context.is_admin:
-            _auto_add_port_aliases(context)
-            _auto_add_address_groups(context)
-        return retval
-    return wrapper
-
-
 def check_subnet_cidr_meets_policy(context, subnet):
     if context.is_admin:
         return
