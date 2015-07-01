@@ -1,7 +1,10 @@
-# Akanda Neutron
+This repository has been moved to the
+[stackforge akanda-neutron] (http://git.openstack.org/cgit/stackforge/akanda-neutron)
+repository. 
 
-*Part of the [Akanda Project](https://github.com/dreamhost/akanda).*
 
-Addon API extensions for OpenStack Neutron which enable functionality and integration
-with the Akanda project, notably Akanda router appliance interaction, and
-services for the Akanda RUG orchestration service.
+Go to [akanda.io] (http://akanda.io) for information on the company.
+
+
+Go to [akanda] (http://github.com/stackforge/akanda) for information on the
+    projects.
